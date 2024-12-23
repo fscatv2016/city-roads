@@ -1,21 +1,21 @@
 <template>
 <div class='find-place' :class='{centered: boxInTheMiddle }'>
   <div v-if='boxInTheMiddle'>
-    <h3 class='site-header'>city roads</h3>
-    <p class='description'>This website renders every single road within a city</p>
+    <h3 class='site-header'>城市道路 (City Roads)</h3>
+    <p class='description'>渲染任意城市的每一条道路 (This website renders every single road within a city)</p>
   </div>
   <form v-on:submit.prevent="onSubmit" class='search-box'>
       <input class='query-input' v-model='enteredInput' type='text' placeholder='Enter a city name to start' ref='input'>
       <a type='submit' class='search-submit' href='#' @click.prevent='onSubmit' v-if='enteredInput && !hideInput'>{{mainActionText}}</a>
   </form>
   <div v-if='showWarning' class='prompt message note shadow'>
-    Note: Large cities may require 200MB+ of data transfer and may need a powerful device to render.
+    注意：大城市可能需要200MB以上的数据传输，可能需要强大的设备来渲染。(Note: Large cities may require 200MB+ of data transfer and may need a powerful device to render.)
   </div>
   <div class='results' v-if='!loading'>
     <div v-if='suggestionsLoaded && suggestions.length' class='suggestions shadow'>
       <div class='prompt message'>
-        <div>Select boundaries below to download all roads within</div>
-        <div class='note'>large cities may require 200MB+ of data transfer and a powerful device</div>
+        <div>选择下面的边界以下载其中的所有道路 (Select boundaries below to download all roads within)</div>
+        <div class='note'>大城市可能需要200MB以上的数据传输和强大的设备 (large cities may require 200MB+ of data transfer and a powerful device)</div>
       </div>
       <ul>
         <li v-for='(suggestion, index) in suggestions' :key="index">
@@ -29,29 +29,29 @@
       </ul>
     </div>
     <div v-if='suggestionsLoaded && !suggestions.length && !loading && !error' class='no-results message shadow'>
-      Didn't find matching cities. Try a different query?
+      未找到匹配的城市。尝试其他查询？(Didn't find matching cities. Try a different query?)
     </div>
     <div v-if='noRoads' class='no-results message shadow'>
-      Didn't find any roads. Try a different query?
+      没有找到任何道路。尝试其他查询？<(Didn't find any roads. Try a different query?)
     </div>
   </div>
   <div v-if='error' class='error message shadow'>
-    <div>Sorry, we were not able to download data from the OpenStreetMap.
-    It could be very busy at the moment processing other requests. <br/><br/> Please bookmark this website and <a href='#' @click.prevent="retry">try again</a> later?</div>
+    <div>很抱歉，我们无法从OpenStreetMap下载数据。目前，它可能正忙于处理其他请求。(Sorry, we were not able to download data from the OpenStreetMap.
+    It could be very busy at the moment processing other requests. )<br/><br/> 请将此网站添加书签，稍后<a href='#' @click.prevent="retry">重试</a>？(Please bookmark this website and <a href='#' @click.prevent="retry">try again</a> later?)</div>
     <div class='error-links'>
-      <a href='https://twitter.com/anvaka/status/1218971717734789120' title='see what it supposed to do' target="_blank">see how it should have worked</a>
-      <a :href='getBugReportURL(error)' :title='"report error: " + error' target='_blank'>report this bug</a>
+      <a href='https://twitter.com/anvaka/status/1218971717734789120' title='see what it supposed to do' target="_blank">看看它应该如何工作 (see how it should have worked)</a>
+      <a :href='getBugReportURL(error)' :title='"report error: " + error' target='_blank'>报告此错误 (report this bug)</a>
     </div>
   </div>
   <div v-if='loading' class='loading message shadow'>
     <loading-icon></loading-icon>
     <span>{{loading}}</span>
-    <a href="#" @click.prevent='cancelRequest' class='cancel-request'>cancel</a>
+    <a href="#" @click.prevent='cancelRequest' class='cancel-request'>取消 (cancel)</a>
     <div class='load-padding' v-if='stillLoading > 0'>
-      Still loading...
+      仍在加载中。。。 (Still loading...)
     </div>
     <div class='load-padding' v-if='stillLoading > 1'>
-      Sorry it takes so long!
+      抱歉花了这么长时间！(Sorry it takes so long!)
     </div>
   </div>
 </div>
