@@ -32,7 +32,7 @@
       未找到匹配的城市。尝试其他查询？(Didn't find matching cities. Try a different query?)
     </div>
     <div v-if='noRoads' class='no-results message shadow'>
-      没有找到任何道路。尝试其他查询？<(Didn't find any roads. Try a different query?)
+      没有找到任何道路。尝试其他查询？(Didn't find any roads. Try a different query?)
     </div>
   </div>
   <div v-if='error' class='error message shadow'>
